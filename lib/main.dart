@@ -11,43 +11,67 @@ void main() {
   ));
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var myText = "Change My Name";
+  TextEditingController _nameController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.amber[50],
       appBar: AppBar(
         title: const Text("Awesome app"),
       ),
-      body: Container(
-        width: 500,
-        color: Colors.teal,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.red,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Card(
+              child: Column(
+                children: [
+                  Image.asset("assets/images/bg.jpg"),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    myText,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: _nameController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Input your name",
+                        labelText: "Name",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.yellow,
-            ),
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.green,
-            )
-          ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+        onPressed: () {
+          myText = _nameController.text;
+          setState(() {});
+        },
+        child: const Icon(Icons.send),
         hoverColor: Colors.purpleAccent, //Not working
       ),
       //floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
