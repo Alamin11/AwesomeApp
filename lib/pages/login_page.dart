@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  static const String routeName = "/login";
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            "assets/images/laptop.jpg",
+            "assets/images/loginBG.jpg",
             fit: BoxFit.cover,
             color: Colors.black.withOpacity(.7),
             colorBlendMode: BlendMode.darken,
@@ -42,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           TextFormField(
+                            validator: (s) {},
                             controller: _userNameController,
                             keyboardType: TextInputType.name,
                             decoration: const InputDecoration(
@@ -53,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                             height: 20.0,
                           ),
                           TextFormField(
+                            validator: (s) {},
                             controller: _passController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
@@ -64,12 +67,14 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 20.0,
                           ),
-                          OutlinedButton(
+                          ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomePage()));
+                              //formKey.currentState.validate();
+                              //   Navigator.push(
+                              //       context,
+                              //       MaterialPageRoute(
+                              //           builder: (context) => HomePage()));
+                              Navigator.pushNamed(context, HomePage.routeName);
                             },
                             child: Text("Sign In"),
                             style: ButtonStyle(

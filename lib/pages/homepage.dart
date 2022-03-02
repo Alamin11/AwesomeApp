@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
+  static const String routeName = "/home";
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -44,6 +46,14 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.amber[50],
       appBar: AppBar(
         title: const Text("Awesome app"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.exit_to_app),
+          ),
+        ],
       ),
       body: resData != null
           ? ListView.builder(
